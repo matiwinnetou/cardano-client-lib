@@ -1,0 +1,23 @@
+dependencies {
+    // ObjectMapper is part of the public factory API, so Jackson is exposed
+    // the same way the upstream Maven compile dependency was.
+    api(libs.jackson.databind)
+}
+
+// Strict Java 17. The root build sets source/target 17, but that still compiles
+// against the running JDK's API. --release 17 rejects newer language features
+// and newer JDK methods.
+tasks.withType(JavaCompile).configureEach {
+    options.release = 17
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            pom {
+                name = 'Cardano Client Conversions'
+                description = 'Deterministic Cardano time, slot, and epoch conversions. Port of org.cardanofoundation:cf-cardano-conversions-java 2.0.0 (MIT, Copyright 2023 Cardano Foundation).'
+            }
+        }
+    }
+}

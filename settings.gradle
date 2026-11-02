@@ -20,6 +20,7 @@ include 'annotation-processor'
 include 'hd-wallet'
 include 'governance'
 include 'crypto-ext'
+include 'conversions'
 
 //CIPs
 include 'cip'
